@@ -1,0 +1,103 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
+    <changeSet id="1629075376-1" author="nerydlg">
+        <createTable tableName="CVD_ORIGN" >
+            <column name="id" type="int">
+                <constraints primaryKey="true" />
+            </column>
+            <column name="dscrp" type="varchar(24)" />
+        </createTable>
+    </changeSet>
+    <changeSet id="1629075376-2" author="nerydlg">
+        <createTable tableName="CVD_SCTR" >
+            <column name="id" type="int">
+                <constraints primaryKey="true" unique="true" />
+            </column>
+            <column name="dscrp" type="varchar(24)" />
+        </createTable>
+    </changeSet>
+    <changeSet id="1629075376-3" author="nerydlg">
+        <createTable tableName="CVD_GNDR" >
+            <column name="id" type="int">
+                <constraints primaryKey="true" unique="true" />
+            </column>
+            <column name="dscrp" type="varchar(24)" />
+        </createTable>
+    </changeSet>
+    <changeSet id="1629075376-4" author="nerydlg">
+        <createTable tableName="CVD_PATNT_TYP" >
+            <column name="id" type="int">
+                <constraints primaryKey="true" unique="true" />
+            </column>
+            <column name="dscrp" type="varchar(24)" />
+        </createTable>
+    </changeSet>
+    <changeSet id="1629075376-5" author="nerydlg">
+        <createTable tableName="CVD_ANSWRS" >
+            <column name="id" type="int">
+                <constraints primaryKey="true" unique="true" />
+            </column>
+            <column name="dscrp" type="varchar(24)" />
+        </createTable>
+    </changeSet>
+    <changeSet id="1629075376-6" author="nerydlg">
+        <createTable tableName="CVD_CNTRY" >
+            <column name="id" type="int">
+                <constraints primaryKey="true" unique="true" />
+            </column>
+            <column name="lng_nm" type="varchar(24)" />
+            <column name="shrt_nm" type="varchar(3)" />
+            <column name="natly" type="varchar(35)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1629075376-7" author="nerydlg">
+        <createTable tableName="CVD_RSLTS_LAB" >
+            <column name="id" type="int">
+                <constraints primaryKey="true" unique="true" />
+            </column>
+            <column name="dscrp" type="varchar(30)" />
+        </createTable>
+    </changeSet>
+    <changeSet id="1629075376-8" author="nerydlg">
+        <createTable tableName="CVD_CLSSF_FNL" >
+            <column name="id" type="int">
+                <constraints primaryKey="true" unique="true" />
+            </column>
+            <column name="clssf" type="varchar(150)" />
+            <column name="dscrp" type="text" />
+        </createTable>
+    </changeSet>
+    <changeSet id="1629075376-9" author="nerydlg">
+        <createTable tableName="CVD_STATE" >
+            <column name="id" type="int">
+                <constraints primaryKey="true" unique="true" />
+            </column>
+            <column name="cntry_id" type="int">
+                <constraints foreignKeyName="FK_CNTRY_ID"
+                             referencedColumnNames="id"
+                             referencedTableName="CVD_CNTRY" />
+            </column>
+            <column name="lng_nm" type="varchar(50)" />
+            <column name="abbrv" type="varchar(5)" />
+        </createTable>
+    </changeSet>
+    <changeSet id="1629075376-10" author="nerydlg">
+        <createTable tableName="CVD_CNTY" >
+            <column name="id" type="int" />
+            <column name="state_id" type="int">
+                <constraints foreignKeyName="FK_STATE_ID"
+                             referencedColumnNames="id"
+                             referencedTableName="CVD_STATE" />
+            </column>
+            <column name="lng_nm" type="varchar(250)" />
+        </createTable>
+    </changeSet>
+    <changeSet id="1629075376-11" author="nerydlg">
+        <addPrimaryKey tableName="CVD_CNTY"
+                       columnNames="id, state_id"
+                       constraintName="PK_CNTY" />
+    </changeSet>
+</databaseChangeLog>

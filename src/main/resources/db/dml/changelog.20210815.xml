@@ -1,0 +1,95 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
+    <changeSet id="1629077217-1" author="nerydlg">
+        <loadData tableName="CVD_ORIGN"
+                  file="data/origin.csv"
+                  relativeToChangelogFile="true">
+            <column header="id" type="NUMERIC" name="id" />
+            <column header="dscrp" type="STRING" name="dscrp" />
+        </loadData>
+    </changeSet>
+    <changeSet id="1629077217-2" author="nerydlg">
+        <loadData tableName="CVD_SCTR"
+                  file="data/sector.csv"
+                  relativeToChangelogFile="true">
+            <column header="id" type="NUMERIC" name="id" />
+            <column header="dscrp" type="STRING" name="dscrp" />
+        </loadData>
+    </changeSet>
+    <changeSet id="1629077217-3" author="nerydlg">
+        <loadData tableName="CVD_GNDR"
+                  file="data/gender.csv"
+                  relativeToChangelogFile="true">
+            <column header="id" type="NUMERIC" name="id" />
+            <column header="dscrp" type="STRING" name="dscrp" />
+        </loadData>
+    </changeSet>
+    <changeSet id="1629077217-4" author="nerydlg">
+        <loadData tableName="CVD_PATNT_TYP"
+                  file="data/patient_type.csv"
+                  relativeToChangelogFile="true">
+            <column header="id" type="NUMERIC" name="id" />
+            <column header="dscrp" type="STRING" name="dscrp" />
+        </loadData>
+    </changeSet>
+    <changeSet id="1629077217-5" author="nerydlg">
+        <loadData tableName="CVD_ANSWRS"
+                  file="data/answers.csv"
+                  relativeToChangelogFile="true">
+            <column header="id" type="NUMERIC" name="id" />
+            <column header="dscrp" type="STRING" name="dscrp" />
+        </loadData>
+    </changeSet>
+    <changeSet id="1629077217-6" author="nerydlg">
+        <loadData tableName="CVD_CNTRY"
+                  file="data/country.csv"
+                  relativeToChangelogFile="true">
+            <column header="id" type="NUMERIC" name="id" />
+            <column header="lng_nm" type="STRING" name="lng_nm" />
+            <column header="shrt_nm" type="STRING" name="shrt_nm" />
+            <column header="natly" type="STRING" name="natly" />
+        </loadData>
+    </changeSet>
+    <changeSet id="1629077217-7" author="nerydlg">
+        <loadData tableName="CVD_RSLTS_LAB"
+                  file="data/lab_results.csv"
+                  relativeToChangelogFile="true">
+            <column header="id" type="NUMERIC" name="id" />
+            <column header="dscrp" type="STRING" name="dscrp" />
+        </loadData>
+    </changeSet>
+    <changeSet id="1629077217-8" author="nerydlg">
+        <loadData tableName="CVD_CLSSF_FNL"
+                  file="data/classification.csv"
+                  relativeToChangelogFile="true"
+                  quotchar="&quot;">
+            <column header="id" type="NUMERIC" name="id" />
+            <column header="clssf" type="STRING" name="clssf" />
+            <column header="dscrp" type="STRING" name="dscrp" />
+        </loadData>
+    </changeSet>
+    <changeSet id="1629077217-9" author="nerydlg">
+        <loadData tableName="CVD_STATE"
+                  file="data/state.csv"
+                  relativeToChangelogFile="true"
+                  quotchar="&quot;">
+            <column header="id" type="NUMERIC" name="id" />
+            <column header="lng_nm" type="STRING" name="lng_nm" />
+            <column header="abbrv" type="STRING" name="abbrv" />
+            <column header="cntry_id" type="NUMERIC" name="cntry_id" />
+        </loadData>
+    </changeSet>
+    <changeSet id="1629077217-10" author="nerydlg">
+        <loadData tableName="CVD_CNTY"
+                  file="data/county.csv"
+                  relativeToChangelogFile="true"
+                  quotchar="'">
+            <column header="id" type="NUMERIC" name="id"/>
+            <column header="lng_nm" type="STRING" name="lng_nm"/>
+            <column header="state_id" type="NUMERIC" name="state_id"/>
+        </loadData>
+    </changeSet>
+</databaseChangeLog>
