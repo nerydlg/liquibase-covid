@@ -95,6 +95,25 @@
             <column name="lng_nm" type="varchar(250)" />
         </createTable>
     </changeSet>
+    <changeSet id="1629075376-12" author="ndelgado">
+        <createTable tableName="CV_DLY_SMMRY_POS">
+            <column name="id" type="int">
+                <constraints primaryKey="true" />
+            </column>
+            <column name="state_id" type="int" >
+                <constraints foreignKeyName="FK_STATE_ID_SMMRY"
+                             referencedColumnNames="id"
+                             referencedTableName="CVD_STATE" />
+            </column>
+            <column name="cnty_id" type="int" >
+                <constraints foreignKeyName="FK_CNT_ID_SMMRY"
+                             referencedColumnNames="id"
+                             referencedTableName="CVD_CNTRY" />
+            </column>
+            <column name="dt" type="date" />
+            <column name="pos" type="int" />
+        </createTable>
+    </changeSet>
     <changeSet id="1629075376-11" author="nerydlg">
         <addPrimaryKey tableName="CVD_CNTY"
                        columnNames="id, state_id"
