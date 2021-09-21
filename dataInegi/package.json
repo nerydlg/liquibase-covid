@@ -1,0 +1,36 @@
+{
+  "name": "datainegi",
+  "version": "1.0.0",
+  "description": "get extra data from inegi API and populate our db",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --ci"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nerydlg/liquibase-covid.git"
+  },
+  "keywords": [
+    "learning",
+    "covid",
+    "import",
+    "inegi"
+  ],
+  "author": "nerydlg",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nerydlg/liquibase-covid/issues"
+  },
+  "homepage": "https://github.com/nerydlg/liquibase-covid#readme",
+  "dependencies": {
+    "knex": "^0.95.11",
+    "pg": "^8.7.1",
+    "ramda": "^0.27.1",
+    "superagent": "^6.1.0",
+    "winston": "^3.3.3"
+  },
+  "devDependencies": {
+    "jest": "^27.1.1",
+    "mock-knex": "^0.4.10"
+  }
+}

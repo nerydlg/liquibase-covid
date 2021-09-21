@@ -1,0 +1,12 @@
+{
+  "db": {
+    "host": "localhost",
+    "port": 5432,
+    "user": "postgres",
+    "password": "secret",
+    "database": "covid"
+  },
+  "inegiAPI": {
+    "apiKey": "your-api-key"
+  }  
+}

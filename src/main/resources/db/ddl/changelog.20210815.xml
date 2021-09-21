@@ -93,10 +93,11 @@
                              referencedTableName="CVD_STATE" />
             </column>
             <column name="lng_nm" type="varchar(250)" />
+            <column name="pop" type="bigint" />
         </createTable>
     </changeSet>
     <changeSet id="1629075376-12" author="ndelgado">
-        <createTable tableName="CV_DLY_SMMRY_POS">
+        <createTable tableName="CVD_DLY_SMMRY_POS">
             <column name="id" type="int">
                 <constraints primaryKey="true" />
             </column>
@@ -111,7 +112,9 @@
                              referencedTableName="CVD_CNTRY" />
             </column>
             <column name="dt" type="date" />
-            <column name="pos" type="int" />
+            <column name="pos" type="bigint" />
+            <column name="neg" type="bigint" />
+            <column name="sus" type="bigint" />
         </createTable>
     </changeSet>
     <changeSet id="1629075376-11" author="nerydlg">
