@@ -11,10 +11,3 @@ const extract = paths([
 ]);
 
 const convert = zipObj(['indicator', 'value', 'geoArea']);
-
-/**
-const parse = ap(
-  extract,
-  convert,
-  
-);*/

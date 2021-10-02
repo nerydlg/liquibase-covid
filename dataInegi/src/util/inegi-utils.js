@@ -2,10 +2,24 @@
 
 const {leftPadding, isNilOrEmpty, mapIndexed } = require('./index');
 
-const { evolve, converge, tap,
-  concat, compose, pipe, prop, paths, cond,
-  equals, always, T, identity, map,
-  splitEvery, zipObj } = require('ramda');
+const { 
+  evolve, 
+  converge, 
+  tap,
+  concat, 
+  compose, 
+  pipe, 
+  prop, 
+  paths, 
+  cond,
+  equals, 
+  always, 
+  T, 
+  identity, 
+  map,
+  splitEvery,
+  whereEq,
+  zipObj } = require('ramda');
 
 const {inegiAPI} = require('../config');
 
@@ -65,36 +79,38 @@ const extract = compose(
   ])),
   prop('Series'));
 
-
-
 const indicatorToProp = cond([
-  [equals('1002000001'), always('pop')],
-  [T, identity]
+  [whereEq({value: '1002000001'}), always('pop')],
+  [T, prop('value')]
 ]);
 
 const geoToIds = compose(
+  zipObj(['cntry', 'state_id', 'id']),
   map(parseInt),
-  splitEvery(4)
+  splitEvery(4),
+  prop('value')
 );
 
-const transformByPosition = (val, idx) => cond([
-  [equals(0), indicatorToProp],
-  [equals(1), identity],
-  [equals(2), geoToIds],
+const transformByPosition = cond([
+  [whereEq({idx: 0}), indicatorToProp],
+  [whereEq({idx: 1}), prop('value')],
+  [whereEq({idx: 2}), geoToIds],
   [T, identity]
-])(idx);
+]);
 
-const transformEachByPosition = mapIndexed(transformByPosition);
+const addIndexToObj = (obj, idx) => ({idx: idx, value: obj});
 
-const convert = zipObj(['indicator', 'value', 'id', 'state_id']);
+const transformEachByPosition = pipe(
+  mapIndexed(addIndexToObj),
+  map(transformByPosition)
+);
+
+const convert = zipObj(['indicator', 'value', 'geoData']);
 
 const parse = pipe(
-  tap(console.log),
   extract,
-  tap(console.log),
-  transformEachByPosition,
-  tap(console.log),
-  convert
+  map(transformEachByPosition),
+  map(convert)
 );
 
 
