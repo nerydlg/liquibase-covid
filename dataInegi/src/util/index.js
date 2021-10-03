@@ -1,6 +1,6 @@
 'use strict';
 
-const { addIndex, anyPass, isNil, isEmpty, map } = require('ramda');
+const { addIndex, anyPass, isNil, isEmpty, map, toString } = require('ramda');
 
 /**
  * isNilOrEmpty validates if a argument is null, undefined, empty or empty, If the argument matches both cases
@@ -18,7 +18,7 @@ const isNilOrEmpty = anyPass([isNil, isEmpty]);
  * @param character character used to fill the string
  * @returns a new string with the expected size.
  */
-const leftPadding = (str, length, character) => isNilOrEmpty(str) ? ''.padStart(length, character) : str.padStart(length, character);
+const leftPadding = (str, length, character) => isNilOrEmpty(str) ? ''.padStart(length, character) : `${str}`.padStart(length, character);
 
 
 const mapIndexed = addIndex(map);

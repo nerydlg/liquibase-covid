@@ -2,14 +2,16 @@
 
 const {leftPadding, isNilOrEmpty, mapIndexed } = require('./index');
 
-const { 
+const {
+  assoc,
   evolve, 
   converge, 
   tap,
   concat, 
   compose, 
   pipe, 
-  prop, 
+  prop,
+  path,
   paths, 
   cond,
   equals, 
@@ -18,6 +20,7 @@ const {
   identity, 
   map,
   splitEvery,
+  reduce,
   whereEq,
   zipObj } = require('ramda');
 
@@ -71,6 +74,12 @@ const buildUrl = (indicators, token) => (geoArea) => `https://www.inegi.org.mx/a
  */
 const getTotalPopulation = buildUrl('1002000001', inegiAPI.apiKey);
 
+/**
+ * extract get information from the property called Series
+ * returns an array with the extracted values
+ * @param object form the INEGI API
+ * @returns [] with the values of 'indicator', 'OBS_VALUE' and 'COBER_GEO'
+ */
 const extract = compose(
   map(paths([
     ['INDICADOR'],
@@ -79,11 +88,21 @@ const extract = compose(
   ])),
   prop('Series'));
 
+/**
+ * indicatorToProp reads the indicator and gives it a value
+ * @param object {value: 'string'}
+ * @returns the property name or by default it returs the indicator value
+ */
 const indicatorToProp = cond([
   [whereEq({value: '1002000001'}), always('pop')],
   [T, prop('value')]
 ]);
 
+/**
+ * geoToIds converts to a geoData object which contains the value for 
+ * state_id and municipality
+ * @param String COBER_GEO value which contains the state and municipality id
+ */
 const geoToIds = compose(
   zipObj(['cntry', 'state_id', 'id']),
   map(parseInt),
@@ -91,6 +110,11 @@ const geoToIds = compose(
   prop('value')
 );
 
+/**
+ * transform each value depending on their position
+ * @param Array of values 
+ * @return Array with the transformed values
+ */
 const transformByPosition = cond([
   [whereEq({idx: 0}), indicatorToProp],
   [whereEq({idx: 1}), prop('value')],
@@ -98,6 +122,12 @@ const transformByPosition = cond([
   [T, identity]
 ]);
 
+/**
+ * converts from single value or object to an object with the index 
+ * @param obj value or object 
+ * @param idx integer reprecenting index value
+ * @returns an object containing value and index
+ */
 const addIndexToObj = (obj, idx) => ({idx: idx, value: obj});
 
 const transformEachByPosition = pipe(
@@ -107,12 +137,39 @@ const transformEachByPosition = pipe(
 
 const convert = zipObj(['indicator', 'value', 'geoData']);
 
+/**
+ * extracts data from the INEGI reponse and converts value into an easy to handle object 
+ * @param response JSON value containing the reponse from the inegi API
+ * @returns transitionObject {indicator: <String>, value:<numeric>, geoData: { id: <integer>, state_id: <integer>, country: <integer>} }
+ */
 const parse = pipe(
   extract,
   map(transformEachByPosition),
   map(convert)
 );
 
+const groupByGeoData = (acc, curr) => {
+  const buildKey = compose(
+     buildGeoArea,
+     formatGeoArea,
+     prop('geoData')
+   );
+  let key = buildKey(curr);
+  let obj = acc.get(key) || {
+    id: curr.geoData.id,
+    state_id: curr.geoData.state_id
+  };
+  let pair = paths([['indicator'], ['value'] ], curr);
+  acc.set(key, assoc(pair[0], parseInt(pair[1]), obj));
+   return acc;
+};
+
+/**
+ * convert from transitionObject into a county database entity with all the indicators
+ * @param transitionObject 
+ * @param cntyEntity 
+ */
+const mergeByCounty = reduce(groupByGeoData, new Map());
 
 module.exports = {
   formatStateOrCounty,
@@ -120,5 +177,6 @@ module.exports = {
   buildGeoArea,
   buildUrl,
   getTotalPopulation,
+  mergeByCounty,
   parse
 };

@@ -4,7 +4,7 @@
   "description": "get extra data from inegi API and populate our db",
   "main": "index.js",
   "scripts": {
-    "test": "jest --ci"
+    "test": "jest"
   },
   "repository": {
     "type": "git",

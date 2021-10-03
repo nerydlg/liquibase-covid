@@ -208,4 +208,40 @@ describe('inegiUtils tests', () => {
     // THEN
     expect(result).toEqual(expected);
   });
+
+  test('mergeByCounty should return a list of counties given an array of transitionObjects', () => {
+    // GIVEN
+    const input = [
+      {
+        "geoData": {
+            "cntry": 700,
+            "id": 1,
+            "state_id": 1
+        }, 
+        "indicator": "pop", 
+        "value": "948990.00000000000000000000"
+      },
+      {
+        "geoData": {
+            "cntry": 700,
+            "id": 1,
+            "state_id": 1
+        }, 
+        "indicator": "1002000002", 
+        "value": "100"
+      }
+    ];
+
+    const expected = {
+      id: 1,
+      state_id: 1,
+      pop: 948990,
+      1002000002: 100
+    }
+    // WHEN
+    let result = subject.mergeByCounty(input);
+    // THEN
+    expect(result).toBeDefined();
+    expect(result.get('00010001')).toEqual(expected);
+  });
 }); 

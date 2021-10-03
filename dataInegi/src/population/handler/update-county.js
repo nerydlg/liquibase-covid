@@ -8,7 +8,7 @@ const {
   buildGeoArea,
   getTotalPopulation
 } = require('../../util/inegi-utils');
-
+const updateIndicators = require('./update-indicators');
 
 /**
  * updateCounty execute a series of steps to download information 
@@ -23,6 +23,6 @@ module.exports = pipe(
   logger.info,
   callAPI,
   logger.info,
-  updateInformation
+  updateIndicators
 );
 

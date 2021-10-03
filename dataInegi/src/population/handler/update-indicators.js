@@ -1,13 +1,15 @@
 'use strict';
 
-const { ap, paths, zipObj } = require('ramda');
-
+const {parse, mergeByCounty} = require('../../util/inegi-utils');
 const updateCounty = require('../repository/update-county');
+const {pipe, values, map} = require('ramda');
+const logger = require('../../util/logger');
 
-const extract = paths([
-  ['INDICATOR'],
-  ['OBSERVATIONS', 0, 'OBS_VALUE'],
-  ['OBSERVATIONS', 0, 'COBER_GEO']
-]);
+module.exports = pipe(
+  parse,
+  logger.info,
+  mergeByCounty,
+  values,
+  map(updateCounty)
+);
 
-const convert = zipObj(['indicator', 'value', 'geoArea']);
