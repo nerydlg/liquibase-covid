@@ -3,3 +3,4 @@ target/
 .idea/
 dataInegi/node_modules/
 dataInegi/*.log
+.Rproj.user
