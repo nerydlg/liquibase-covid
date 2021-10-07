@@ -112,6 +112,14 @@ workflow_fit_prophet_boost <- workflow() %>%
 
 workflow_fit_prophet_boost
 
+# Neural Network Time Series Forecasts
+
+model_fit_nnetar <- nnetar_reg() %>%
+  set_engine("nnetar") %>% 
+  fit(confirmados ~ date, training(splits))
+
+model_fit_nnetar
+
 # Modeltime Table
 
 model_table <- modeltime_table(
@@ -119,7 +127,8 @@ model_table <- modeltime_table(
   model_fit_prophet,
   workflow_fit_glmnet,
   workflow_fit_rf,
-  workflow_fit_prophet_boost
+  workflow_fit_prophet_boost,
+  model_fit_nnetar
 ) 
 
 model_table
@@ -154,7 +163,7 @@ calibration_table %>%
 
 calibration_table %>%
   # Remove ARIMA model with low accuracy
-  filter(.model_id != 4) %>%
+  # filter(.model_id != 4) %>%
   
   # Refit and Forecast Forward
   modeltime_refit(ts.agu.tbl) %>%
