@@ -6,7 +6,7 @@
 # a poder transformar los datos y manipularlos adecuadamente para 
 # poder manejarlos como series de tiempo
 
-library(tidyverse) 
+library(tidyverse)  #install.packages("tidyverse")
 
 
 
@@ -60,7 +60,7 @@ write.csv(data,
 
 # example de time series de aguascalientes 
 
-aguascalientes <- ts(data[2],     # random data
+aguascalientes <- ts(data[2], 
            start = c(2020, as.numeric(format(data$fecha[1], "%j"))),
            frequency = 365)
 plot(aguascalientes)
