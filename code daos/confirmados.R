@@ -2,7 +2,7 @@
 
 # library ----------------------------------------------------------------
 
-# cargamos algunas librerias necesarias, las cueles nos van a ayudar 
+# cargamos algunas librerias necesarias, las cuales nos van a ayudar 
 # a poder transformar los datos y manipularlos adecuadamente para 
 # poder manejarlos como series de tiempo
 
@@ -55,7 +55,7 @@ data <- data %>%
 
 # codigo para valores perdidos
 
-if (any(is.na(data)) == TRUE) {data = na.omit(data)}  # TRUE = hay al menos un valor NA
+if (any(is.na(data)) == TRUE) {data = tidyr::drop_na(data)}  # TRUE = hay al menos un valor NA
 
 
 # head(data)

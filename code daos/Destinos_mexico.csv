@@ -1,0 +1,33 @@
+CIUDAD,ESTADO,cve_ent,Observaciones
+Acapulco,Guerrero,12001,
+Ixtapa Zihuatanejo,Guerrero,12038,
+Taxco,Guerrero,12055,
+Cabo San Lucas,Baja California Sur,3008,Los Cabos
+La Paz,Baja California Sur,15070,
+Campeche,Campeche,4002,
+Chihuahua,Chihuahua,8019,
+Ciudad de Mexico,Distrito Federal (CDMX),,Son 16 Municipios hay que desglozarlos
+San Miguel de Allende,Guanajuato,11003,
+Guadalajara,Jalisco,14039,
+Puerto Vallarta,Jalisco,14067,
+Tequila,Jalisco,14094,
+Morelia,Michoacan,16053,
+Cuernavaca,Morelos,17007,
+Nuevo Vallarta,Nayarit,18020,Bahia de Banderas
+Monterrey,Nuevo Leon,19039,Revisar si otro de los 13 municipios aledaños aplicarian
+Oaxaca,Oaxaca,20067,
+Puebla,Puebla,21114,Revisar si otro municipio le aplica
+Queretaro,Queretaro,22014,Revisar si otro le aplica como el 22006 de Corregidora
+Cancun,Quintana Roo,23005,Esta en el municipio Benito Juarez pero hay otro con el mismo nombre en CDMX
+Cozumel,Quintana Roo,23001,
+Isla Mujeres,Quintana Roo,23003,
+Playa del Carmen,Quintana Roo,23008,Solidaridad
+San Luis Potosi,San Luis Potosi,24028,
+Hermosillo,Sonora,26030,
+Villahermosa,Tabasco,27004,"Abarca varios municipios (Centro, 27013 Nacajuca y otros)
+"
+Tuxtla Gutierrez,Chiapas,7101,
+Tlaxcala,Tlaxcala,29033,
+Chichen Itza,Yucatan,31091,Tinum
+Merida,Yucatan,31050,Revisar si otro municipio le aplica
+Zacatecas,Zacatecas,32056,Revisar si otro municipio le aplica (Guadalupe)
