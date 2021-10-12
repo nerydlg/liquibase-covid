@@ -1,7 +1,7 @@
 'use strict';
 
-const mockedUpdateCounty =  jest.fn().mockReturnValue(Promise.resolve([]));
-jest.setMock('../../repository/update-county', mockedUpdateCounty);
+// const mockedUpdateCounty =  jest.fn().mockReturnValue(Promise.resolve([]));
+// jest.setMock('../../repository/update-county', mockedUpdateCounty);
 const subject = require('../update-indicators');
 
 describe('update indicator', () => {

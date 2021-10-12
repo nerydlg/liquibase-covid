@@ -9,7 +9,9 @@ module.exports = pipe(
   parse,
   logger.info,
   mergeByCounty,
+  logger.info,
   values,
+  logger.info,
   map(updateCounty)
 );
 
